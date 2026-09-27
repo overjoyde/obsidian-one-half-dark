@@ -1,0 +1,283 @@
+/*
+ * One Half Dark — Obsidian theme
+ * Based on the Windows Terminal "One Half Dark" / "One Half Light" colour schemes.
+ *
+ * Terminal palette (One Half Dark)
+ *   background   #282C34   foreground   #DCDFE4
+ *   black        #282C34   brightBlack  #5A6374
+ *   red          #E06C75   green        #98C379
+ *   yellow       #E5C07B   blue         #61AFEF
+ *   purple       #C678DD   cyan         #56B6C2
+ *   white        #DCDFE4
+ *
+ * Structure: 1) palette tokens  2) Obsidian variable mapping  3) small element tweaks.
+ * Change a colour once in section 1 and it propagates everywhere.
+ */
+
+/* ------------------------------------------------------------------ */
+/* 1. Palette tokens                                                   */
+/* ------------------------------------------------------------------ */
+
+.theme-dark {
+  --ohd-bg: #282c34; /* terminal background — editor */
+  --ohd-bg-alt: #2c313a; /* hover / raised */
+  --ohd-bg-side: #21252b; /* sidebars, code blocks */
+  --ohd-bg-deep: #1b1f24; /* ribbon, titlebar, inputs */
+  --ohd-border: #3a3f4b;
+  --ohd-selection: #3e4451;
+
+  --ohd-fg: #dcdfe4; /* white / foreground */
+  --ohd-fg-muted: #abb2bf;
+  --ohd-fg-faint: #5a6374; /* brightBlack */
+
+  --ohd-red: #e06c75;
+  --ohd-green: #98c379;
+  --ohd-yellow: #e5c07b;
+  --ohd-blue: #61afef;
+  --ohd-purple: #c678dd;
+  --ohd-cyan: #56b6c2;
+
+  --ohd-red-rgb: 224, 108, 117;
+  --ohd-green-rgb: 152, 195, 121;
+  --ohd-yellow-rgb: 229, 192, 123;
+  --ohd-blue-rgb: 97, 175, 239;
+  --ohd-purple-rgb: 198, 120, 221;
+  --ohd-cyan-rgb: 86, 182, 194;
+
+  /* accent = blue #61AFEF */
+  --accent-h: 207;
+  --accent-s: 82%;
+  --accent-l: 66%;
+}
+
+/* Companion light mode from the "One Half Light" terminal scheme */
+.theme-light {
+  --ohd-bg: #fafafa;
+  --ohd-bg-alt: #f0f0f1;
+  --ohd-bg-side: #f0f0f1;
+  --ohd-bg-deep: #e5e5e6;
+  --ohd-border: #dbdbdc;
+  --ohd-selection: #d6ddea;
+
+  --ohd-fg: #383a42;
+  --ohd-fg-muted: #4f525d;
+  --ohd-fg-faint: #a0a1a7;
+
+  --ohd-red: #e45649;
+  --ohd-green: #50a14f;
+  --ohd-yellow: #c18301;
+  --ohd-blue: #0184bc;
+  --ohd-purple: #a626a4;
+  --ohd-cyan: #0997b3;
+
+  --ohd-red-rgb: 228, 86, 73;
+  --ohd-green-rgb: 80, 161, 79;
+  --ohd-yellow-rgb: 193, 131, 1;
+  --ohd-blue-rgb: 1, 132, 188;
+  --ohd-purple-rgb: 166, 38, 164;
+  --ohd-cyan-rgb: 9, 151, 179;
+
+  --accent-h: 198;
+  --accent-s: 99%;
+  --accent-l: 37%;
+}
+
+/* ------------------------------------------------------------------ */
+/* 2. Obsidian variable mapping (shared by both modes)                 */
+/* ------------------------------------------------------------------ */
+
+.theme-dark,
+.theme-light {
+  /* Base colours used by Obsidian's own components */
+  --color-red: var(--ohd-red);
+  --color-orange: var(--ohd-yellow);
+  --color-yellow: var(--ohd-yellow);
+  --color-green: var(--ohd-green);
+  --color-cyan: var(--ohd-cyan);
+  --color-blue: var(--ohd-blue);
+  --color-purple: var(--ohd-purple);
+  --color-pink: var(--ohd-purple);
+  --color-red-rgb: var(--ohd-red-rgb);
+  --color-orange-rgb: var(--ohd-yellow-rgb);
+  --color-yellow-rgb: var(--ohd-yellow-rgb);
+  --color-green-rgb: var(--ohd-green-rgb);
+  --color-cyan-rgb: var(--ohd-cyan-rgb);
+  --color-blue-rgb: var(--ohd-blue-rgb);
+  --color-purple-rgb: var(--ohd-purple-rgb);
+  --color-pink-rgb: var(--ohd-purple-rgb);
+
+  /* Surfaces */
+  --background-primary: var(--ohd-bg);
+  --background-primary-alt: var(--ohd-bg-side);
+  --background-secondary: var(--ohd-bg-side);
+  --background-secondary-alt: var(--ohd-bg-deep);
+  --background-modifier-border: var(--ohd-border);
+  --background-modifier-border-hover: var(--ohd-fg-faint);
+  --background-modifier-border-focus: var(--ohd-blue);
+  --background-modifier-hover: rgba(var(--ohd-blue-rgb), 0.08);
+  --background-modifier-active-hover: rgba(var(--ohd-blue-rgb), 0.15);
+  --background-modifier-form-field: var(--ohd-bg-deep);
+  --background-modifier-error: var(--ohd-red);
+  --background-modifier-success: var(--ohd-green);
+  --titlebar-background: var(--ohd-bg-deep);
+  --titlebar-background-focused: var(--ohd-bg-deep);
+  --ribbon-background: var(--ohd-bg-deep);
+  --ribbon-background-collapsed: var(--ohd-bg-deep);
+  --tab-container-background: var(--ohd-bg-deep);
+  --divider-color: var(--ohd-border);
+
+  /* Text */
+  --text-normal: var(--ohd-fg);
+  --text-muted: var(--ohd-fg-muted);
+  --text-faint: var(--ohd-fg-faint);
+  --text-accent: var(--ohd-blue);
+  --text-accent-hover: var(--ohd-cyan);
+  --text-error: var(--ohd-red);
+  --text-success: var(--ohd-green);
+  --text-warning: var(--ohd-yellow);
+  --text-selection: var(--ohd-selection);
+  --text-highlight-bg: rgba(var(--ohd-yellow-rgb), 0.28);
+  --text-on-accent: var(--ohd-bg);
+  --caret-color: var(--ohd-fg);
+
+  /* Interactive */
+  --interactive-normal: var(--ohd-bg-alt);
+  --interactive-hover: var(--ohd-selection);
+  --interactive-accent: var(--ohd-blue);
+  --interactive-accent-hover: var(--ohd-cyan);
+
+  /* Headings — walk the terminal colours in ANSI order */
+  --h1-color: var(--ohd-red);
+  --h2-color: var(--ohd-yellow);
+  --h3-color: var(--ohd-green);
+  --h4-color: var(--ohd-cyan);
+  --h5-color: var(--ohd-blue);
+  --h6-color: var(--ohd-purple);
+  --inline-title-color: var(--ohd-red);
+
+  /* Inline formatting */
+  --bold-color: var(--ohd-yellow);
+  --italic-color: var(--ohd-purple);
+
+  /* Links & tags */
+  --link-color: var(--ohd-blue);
+  --link-color-hover: var(--ohd-cyan);
+  --link-unresolved-color: var(--ohd-fg-faint);
+  --link-unresolved-decoration-color: var(--ohd-fg-faint);
+  --link-external-color: var(--ohd-cyan);
+  --link-external-color-hover: var(--ohd-blue);
+  --tag-color: var(--ohd-cyan);
+  --tag-color-hover: var(--ohd-cyan);
+  --tag-background: rgba(var(--ohd-cyan-rgb), 0.12);
+  --tag-background-hover: rgba(var(--ohd-cyan-rgb), 0.22);
+  --tag-border-color: rgba(var(--ohd-cyan-rgb), 0.25);
+
+  /* Lists, quotes, rules, checkboxes */
+  --list-marker-color: var(--ohd-fg-faint);
+  --list-marker-color-hover: var(--ohd-blue);
+  --list-marker-color-collapsed: var(--ohd-purple);
+  --blockquote-border-color: var(--ohd-purple);
+  --blockquote-color: var(--ohd-fg-muted);
+  --hr-color: var(--ohd-border);
+  --checkbox-color: var(--ohd-green);
+  --checkbox-color-hover: var(--ohd-green);
+  --checkbox-border-color: var(--ohd-fg-faint);
+  --checkbox-marker-color: var(--ohd-bg);
+  --checklist-done-color: var(--ohd-fg-faint);
+
+  /* Tables */
+  --table-border-color: var(--ohd-border);
+  --table-header-background: var(--ohd-bg-side);
+  --table-header-color: var(--ohd-blue);
+  --table-row-alt-background: rgba(255, 255, 255, 0.015);
+  --table-row-background-hover: rgba(var(--ohd-blue-rgb), 0.06);
+
+  /* Code & syntax highlighting (One Half token mapping) */
+  --code-background: var(--ohd-bg-side);
+  --code-normal: var(--ohd-green);
+  --code-comment: var(--ohd-fg-faint);
+  --code-function: var(--ohd-blue);
+  --code-important: var(--ohd-red);
+  --code-keyword: var(--ohd-purple);
+  --code-operator: var(--ohd-cyan);
+  --code-property: var(--ohd-red);
+  --code-punctuation: var(--ohd-fg-muted);
+  --code-string: var(--ohd-green);
+  --code-tag: var(--ohd-red);
+  --code-value: var(--ohd-yellow);
+
+  /* Graph view */
+  --graph-line: var(--ohd-border);
+  --graph-node: var(--ohd-fg-muted);
+  --graph-node-focused: var(--ohd-blue);
+  --graph-node-tag: var(--ohd-cyan);
+  --graph-node-attachment: var(--ohd-yellow);
+  --graph-node-unresolved: var(--ohd-fg-faint);
+  --graph-text: var(--ohd-fg);
+
+  /* Callouts: intentionally not overridden. Obsidian's defaults point at
+   * --color-* (1.13+, full colours) or --color-*-rgb (older, triplets), and both
+   * are mapped to the One Half palette above, so callouts pick up
+   * blue/cyan/green/yellow/red/purple in every app version. */
+}
+
+/* General (non-colour) variables go under body per Obsidian theme guidelines.
+ * Fonts are referenced locally only — no remote assets are loaded. */
+body {
+  --font-monospace-theme:
+    "Cascadia Code", "Cascadia Mono", "JetBrains Mono", "SF Mono", Menlo,
+    Consolas, monospace;
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. Element tweaks                                                   */
+/* ------------------------------------------------------------------ */
+
+/* Inline code: soft pill, like a highlighted terminal token */
+.markdown-rendered code:not(pre code),
+.cm-s-obsidian span.cm-inline-code:not(.cm-formatting-code) {
+  color: var(--code-normal);
+  background-color: var(--code-background);
+  border: 1px solid var(--ohd-border);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+
+/* Code blocks: thin border so they read against the editor */
+.markdown-rendered pre {
+  border: 1px solid var(--ohd-border);
+  border-radius: 6px;
+}
+
+/* Highlight (==text==) keeps readable text */
+.markdown-rendered mark,
+.cm-s-obsidian span.cm-highlight {
+  color: var(--text-normal);
+}
+
+/* Active tab gets a blue top line, echoing the terminal's active tab */
+.workspace-tab-header.is-active {
+  box-shadow: inset 0 2px 0 var(--ohd-blue);
+}
+
+/* Terminal-style block cursor colour for the active line hint */
+.markdown-source-view.mod-cm6 .cm-active {
+  background-color: rgba(255, 255, 255, 0.025);
+}
+.theme-light .markdown-source-view.mod-cm6 .cm-active {
+  background-color: rgba(0, 0, 0, 0.025);
+}
+
+/* Completed checklist items */
+.markdown-rendered .task-list-item.is-checked,
+.markdown-source-view .HyperMD-task-line[data-task="x"] {
+  color: var(--checklist-done-color);
+}
+
+/* Headings: a touch of weight like bold ANSI colours */
+.markdown-rendered h1,
+.markdown-rendered h2,
+.HyperMD-header-1,
+.HyperMD-header-2 {
+  font-weight: 700;
+}
