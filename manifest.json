@@ -1,7 +1,8 @@
 {
   "name": "One Half Dark",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "minAppVersion": "1.0.0",
   "author": "Johan Övergaard",
-  "authorUrl": "https://github.com/overjoyde"
+  "authorUrl": "https://github.com/overjoyde",
+  "fundingUrl": "https://buymeacoffee.com/overjoyde"
 }
